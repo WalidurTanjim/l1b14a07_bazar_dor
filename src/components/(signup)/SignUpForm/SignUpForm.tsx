@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { usePathname, useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const SignUpForm = () => {
      const [password, setPassword] = useState("");
      const [repeatPassword, setRepeatPassword] = useState("");
      const [passwordError, setPasswordError] = useState("");
      const [repeatPasswordError, setRepeatPasswordError] = useState("");
+     const [signUpLoading, setSignUpLoading] = useState<boolean>(false);
 
      const router = useRouter();
      const pathname = usePathname();
@@ -56,20 +58,29 @@ const SignUpForm = () => {
           };
           console.log("Signup before auth:", formValues);
 
-          const { data: resData, error } = await authClient.signUp.email({
-               name: formValues?.name,
-               email: formValues?.email,
-               password: formValues?.password
-          })
-          console.log("Signup auth:", resData, error);
+          try {
+               setSignUpLoading(true);
 
-          if (resData?.user) {
-               toast.success("Account signup successfully");
-               router.push('/');
-          } else {
-               console.error(error);
-               toast.error(error?.message as string);
-               throw error;
+               const { data: resData, error } = await authClient.signUp.email({
+                    name: formValues?.name,
+                    email: formValues?.email,
+                    password: formValues?.password
+               })
+               console.log("Signup auth:", resData, error);
+
+               if (resData?.user) {
+                    toast.success("Account signup successfully");
+                    router.push('/');
+               } else {
+                    console.error(error);
+                    toast.error(error?.message as string);
+                    return
+               }
+          } catch (err: any) {
+               console.error("SignUp error:", err);
+               toast.error(err?.message as string || "An unexpected error occurred.")
+          } finally {
+               setSignUpLoading(false);
           }
      };
 
@@ -152,11 +163,26 @@ const SignUpForm = () => {
                </div>
 
                {/* submit button */}
-               <button
+               {/* <button
                     type="submit"
                     className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
                >
                     অ্যাকাউন্ট তৈরি করুন
+               </button> */}
+
+               <button
+                    type="submit"
+                    disabled={signUpLoading}
+                    className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] disabled:bg-opacity-80 text-white text-sm font-medium rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+               >
+                    {signUpLoading ? (
+                         <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <span>অ্যাকাউন্ট তৈরি হচ্ছে...</span>
+                         </>
+                    ) : (
+                         "অ্যাকাউন্ট তৈরি করুন"
+                    )}
                </button>
           </form>
      )

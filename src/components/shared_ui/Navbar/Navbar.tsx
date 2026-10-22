@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
+import ProfileDropdown from "@/components/ProfileDropdown/ProfileDropdown";
 
 const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,7 @@ const Navbar = () => {
                          <div className="hidden md:flex items-center gap-4">
                               <Link href="/signin" className="text-gray-700 font-medium hover:text-emerald-600 transition-colors px-3 py-2">সাইন ইন</Link>
                               <Link href="/signup" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm transition-all hover:shadow">সাইন আপ</Link>
+                              <ProfileDropdown />
                          </div>
 
                          {/* hamburger icon for small device */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { MoveLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ const SignInForm = () => {
      const [password, setPassword] = useState("");
      const [passwordError, setPasswordError] = useState("");
      const [showPassword, setShowPassword] = useState(false);
+     const [signInLoading, setSignInLoading] = useState<boolean>(false);
 
      const router = useRouter();
      const pathname = usePathname();
@@ -43,8 +44,9 @@ const SignInForm = () => {
           }
      };
 
-     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
+
           const error = validatePassword(password);
           if (error) {
                setPasswordError(error);
@@ -60,19 +62,28 @@ const SignInForm = () => {
           console.log("Signin before auth:", formValues);
 
           // better-auth signIn validation
-          const { data: resData, error: resError } = await authClient.signIn.email({
-               email: formValues?.email,
-               password: formValues?.password
-          });
+          try {
+               setSignInLoading(true);
 
-          console.log("Signin after auth:", resData, resError);
+               const { data: resData, error: resError } = await authClient.signIn.email({
+                    email: formValues?.email,
+                    password: formValues?.password
+               });
 
-          if(resData?.user) {
-               toast.success("Account signin successfully");
-          }else {
-               console.error("Signin error:", resError);
-               toast.error(resError?.message as string);
-               throw resError;
+               console.log("Signin after auth:", resData, resError);
+
+               if (resData?.user) {
+                    toast.success("Account signin successfully");
+               } else {
+                    console.error("Signin error:", resError);
+                    toast.error(resError?.message as string);
+                    return
+               }
+          } catch (err: any) {
+               console.error("Signin error:", err);
+               toast.error(err?.message || "An unexpected error occurred.")
+          } finally {
+               setSignInLoading(false);
           }
      };
 
@@ -127,9 +138,17 @@ const SignInForm = () => {
                {/* সাবমিট বাটন */}
                <button
                     type="submit"
-                    className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+                    disabled={signInLoading}
+                    className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] disabled:bg-opacity-80 text-white text-sm font-medium rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
                >
-                    সাইন ইন
+                    {signInLoading ? (
+                         <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <span>সাইন ইন হচ্ছে...</span>
+                         </>
+                    ) : (
+                         "সাইন ইন"
+                    )}
                </button>
           </form>
      )
