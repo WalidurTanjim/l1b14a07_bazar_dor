@@ -1,8 +1,4 @@
-"use client"
-
 import React, { useState } from "react";
-import Link from "next/link";
-import { MoveLeft } from "lucide-react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { usePathname, useRouter } from "next/navigation";
@@ -72,6 +68,7 @@ const SignUpForm = () => {
                router.push('/');
           } else {
                console.error(error);
+               toast.error(error?.message as string);
                throw error;
           }
      };

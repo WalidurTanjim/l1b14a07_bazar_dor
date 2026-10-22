@@ -1,59 +1,8 @@
-"use client";
-
-import React, { useState } from "react";
+import SignInForm from "@/components/(signin)/SignInForm/SignInForm";
+import { MoveLeft } from "lucide-react";
 import Link from "next/link";
-import { MoveLeft, Eye, EyeOff } from "lucide-react";
 
 const SignIn = () => {
-     const [email, setEmail] = useState("");
-     const [password, setPassword] = useState("");
-     const [passwordError, setPasswordError] = useState("");
-     const [showPassword, setShowPassword] = useState(false);
-
-     const validatePassword = (value: string) => {
-          const hasUppercase = /[A-Z]/.test(value);
-          const hasLowercase = /[a-z]/.test(value);
-          const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-          const hasMinLength = value.length >= 8;
-
-          if (!value) {
-               return "পাসওয়ার্ড প্রদান করুন";
-          }
-
-          if (!hasMinLength || !hasUppercase || !hasLowercase || !hasSpecialChar) {
-               return "পাসওয়ার্ডে কমপক্ষে ৮টি অক্ষর, বড় হাতের অক্ষর, ছোট হাতের অক্ষর এবং একটি বিশেষ চিহ্ন (!@#$%^&*) থাকতে হবে";
-          }
-
-          return "";
-     };
-
-     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          const val = e.target.value;
-          setPassword(val);
-          if (val) {
-               setPasswordError(validatePassword(val));
-          } else {
-               setPasswordError("");
-          }
-     };
-
-     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          const error = validatePassword(password);
-          if (error) {
-               setPasswordError(error);
-               return;
-          }
-          setPasswordError("");
-
-          const formData = new FormData(e.currentTarget);
-          const formValues = Object.fromEntries(formData.entries()) as {
-               email: string;
-               password: string;
-          };
-          console.log("Signin before auth:", formValues);
-     };
-
      return (
           <div className="min-h-screen bg-[#f2f6f3] flex flex-col items-center justify-center p-4 font-sans text-gray-800">
                {/* হেডার সেকশন */}
@@ -68,8 +17,7 @@ const SignIn = () => {
 
                {/* কার্ড সেকশন */}
                <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                         {/* ইমেইল ইনপুট */}
+                    {/* <form onSubmit={handleSubmit} className="space-y-4">
                          <div>
                               <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                                    ইমেইল
@@ -85,7 +33,6 @@ const SignIn = () => {
                               />
                          </div>
 
-                         {/* পাসওয়ার্ড ইনপুট */}
                          <div>
                               <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                                    পাসওয়ার্ড
@@ -117,14 +64,15 @@ const SignIn = () => {
                               )}
                          </div>
 
-                         {/* সাবমিট বাটন */}
                          <button
                               type="submit"
                               className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
                          >
                               সাইন ইন
                          </button>
-                    </form>
+                    </form> */}
+                    {/* SignInForm */}
+                    <SignInForm />
 
                     {/* ডিভাইডার (অথবা) */}
                     <div className="relative my-6 text-center">
