@@ -14,7 +14,6 @@ const Navbar = () => {
           });
           setCurrentDate(date);
      }, []);
-     console.log(currentDate);
 
      return (
           <header className="w-full bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
