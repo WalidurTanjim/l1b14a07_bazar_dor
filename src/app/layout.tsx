@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared_ui/Navbar/Navbar";
 import Footer from "@/components/shared_ui/Footer/Footer";
+import { Toaster } from 'react-hot-toast';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main>{children}</main>
 
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
