@@ -32,10 +32,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${noto_sans_bengali.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <div className="nav pb-2">
+        <div className="nav">
           <Navbar />
 
-          <div className="px-4 md:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+          <div className="bg-white">
             <Suspense fallback={<NavLinksSkeleton />}>
               <NavLinks />
             </Suspense>
