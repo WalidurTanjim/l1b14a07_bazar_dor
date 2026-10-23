@@ -102,7 +102,7 @@ const ProfileDropdown = () => {
 
                          {/* প্রোফাইল ড্রপডাউন মোডাল (স্ক্রিনশট অনুযায়ী ১০০% সেম ডিজাইন) */}
                          {isOpen && (
-                              <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-gray-100 p-6 z-50 transition-all animate-in fade-in zoom-in-95 duration-150">
+                              <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-3xl border border-gray-100 p-6 z-50 transition-all animate-in fade-in zoom-in-95 duration-150">
                                    {/* ইউজার ইনফরমেশন */}
                                    <div className="mb-5">
                                         <h3 className="text-lg font-medium text-gray-900 tracking-tight leading-snug">
