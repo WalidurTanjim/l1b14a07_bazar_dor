@@ -1,29 +1,3 @@
-// "use client"
-
-// import { authClient } from "@/lib/auth-client"
-// import Link from "next/link";
-
-// const ProfileDropdown = () => {
-//      const { data: session } = authClient.useSession();
-//      const user = session;
-//      console.log(session);
-
-//      return (
-//           <>
-//                {
-//                user ? (<>
-//                     <h1>hi</h1>
-//                </>) : (<>
-//                          <Link href = "/signin" className = "text-gray-700 font-medium hover:text-emerald-600 transition-colors px-3 py-2">সাইন ইন</Link>
-//                          <Link href="/signup" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm transition-all hover:shadow">সাইন আপ</Link>
-//                     </>)
-//                }
-//           </>
-//      )
-// }
-
-// export default ProfileDropdown
-
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -31,8 +5,11 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import Image from "next/image";
 import { User, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const ProfileDropdown = () => {
+     const router = useRouter();
+
      const { data: session } = authClient.useSession();
      const [isOpen, setIsOpen] = useState(false);
      const dropdownRef = useRef<HTMLDivElement>(null);
@@ -57,7 +34,13 @@ const ProfileDropdown = () => {
      }, []);
 
      const handleSignOut = async () => {
-          await authClient.signOut();
+          await authClient.signOut({
+               fetchOptions: {
+                    onSuccess: () => {
+                         router.push('/');
+                    }
+               }
+          });
           setIsOpen(false);
      };
 
