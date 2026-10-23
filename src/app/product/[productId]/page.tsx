@@ -1,4 +1,5 @@
 import DynamicProductDetails from '@/components/Products/DynamicProductDetails/DynamicProductDetails';
+import ProductDetailsSkeleton from '@/components/Skeketons/ProductDetailsSkeleton/ProductDetailsSkeleton';
 import React, { Suspense } from 'react'
 
 interface ProductDetailsParams {
@@ -10,7 +11,7 @@ interface ProductDetailsParams {
 const ProductDetails = async({ params }: ProductDetailsParams) => {
      return (
           <div>
-               <Suspense fallback={<p>Product is loading...</p>}>
+               <Suspense fallback={<ProductDetailsSkeleton />}>
                     <DynamicProductDetails params={params} />
                </Suspense>
           </div>
