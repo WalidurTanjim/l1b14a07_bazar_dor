@@ -35,11 +35,11 @@ const Banner = () => {
                          </p>
 
                          {/* অ্যাকশন বাটন (Action Button) */}
-                         <div className="pt-2">
+                         <a href="#all-products" className="pt-2">
                               <button className="bg-[#008744] hover:bg-[#007038] text-white font-medium text-sm sm:text-base px-6 py-2.5 rounded-xl shadow-md transition-all duration-200 active:scale-95">
                                    সব পণ্য দেখুন
                               </button>
-                         </div>
+                         </a>
                     </div>
 
                     {/* ডান পাশের ইমেজ (Hero Image) */}
