@@ -60,7 +60,7 @@ const SignInForm = () => {
                email: string;
                password: string;
           };
-          console.log("Signin before auth:", formValues);
+          // console.log("Signin before auth:", formValues);
 
           // better-auth signIn validation
           try {
@@ -68,14 +68,14 @@ const SignInForm = () => {
 
                const { data: resData, error: resError } = await authClient.signIn.email({
                     email: formValues?.email,
-                    password: formValues?.password
+                    password: formValues?.password,
+                    callbackURL: callbackUrl
                });
 
-               console.log("Signin after auth:", resData, resError);
+               // console.log("Signin after auth:", resData, resError);
 
                if (resData?.user) {
                     toast.success("Account signin successfully");
-                    router.push(callbackUrl);
                } else {
                     console.error("Signin error:", resError);
                     toast.error(resError?.message as string);
