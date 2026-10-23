@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import DecreaseProductList from '../DecreaseProductList/DecreaseProductList'
+import ProductLoadingSkeleton from '@/components/Skeketons/ProductLoadingSkeleton/ProductLoadingSkeleton'
 
 const DecreaseProducts = () => {
      return (
@@ -9,7 +10,7 @@ const DecreaseProducts = () => {
                          <h1 className="text-xl font-semibold text-slate-800">আজ দাম কমেছে</h1>
                     </div>
 
-                    <Suspense fallback={<p>Products is loading...</p>}>
+                    <Suspense fallback={<ProductLoadingSkeleton />}>
                          <DecreaseProductList />
                     </Suspense>
                </div>

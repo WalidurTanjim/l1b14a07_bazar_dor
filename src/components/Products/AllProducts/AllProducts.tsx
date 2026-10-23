@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import ProductList from "../ProductList/ProductList"
+import ProductLoadingSkeleton from "@/components/Skeketons/ProductLoadingSkeleton/ProductLoadingSkeleton"
 
 const AllProducts = async () => {
      return (
@@ -10,7 +11,7 @@ const AllProducts = async () => {
                          <p className="text-slate-600">মোট ০ টি পণ্য লোড করা হয়েছে</p>
                     </div>
 
-                    <Suspense fallback={<p>Products is loading...</p>}>
+                    <Suspense fallback={<ProductLoadingSkeleton />}>
                          <ProductList />
                     </Suspense>
                </div>
