@@ -1,4 +1,5 @@
 import CategoryList from '@/components/CategoryList/CategoryList'
+import CategoryHeaderSkeleton from '@/components/Skeketons/CategoryHeaderSkeleton/CategoryHeaderSkeleton'
 import React, { Suspense } from 'react'
 
 interface SlugParams {
@@ -10,7 +11,7 @@ interface SlugParams {
 const CategoryProductPage = async({ params }: SlugParams) => {
      return (
           <div className='px-4 md:px-6 lg:px-8 py-10'>
-               <Suspense fallback={<p>Category products loading...</p>}>
+               <Suspense fallback={<CategoryHeaderSkeleton />}>
                     <CategoryList params={params} />
                </Suspense>
           </div>
