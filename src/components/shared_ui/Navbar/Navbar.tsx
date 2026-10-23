@@ -35,8 +35,6 @@ const Navbar = () => {
 
                          {/* signin & signup button for desktop (right side) */}
                          <div className="hidden md:flex items-center gap-4">
-                              <Link href="/signin" className="text-gray-700 font-medium hover:text-emerald-600 transition-colors px-3 py-2">সাইন ইন</Link>
-                              <Link href="/signup" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm transition-all hover:shadow">সাইন আপ</Link>
                               <ProfileDropdown />
                          </div>
 
