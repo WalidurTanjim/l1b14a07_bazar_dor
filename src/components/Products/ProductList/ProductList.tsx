@@ -5,7 +5,7 @@ import { Product } from '@/types/product';
 
 const ProductList = async() => {
      const res = await getProducts();
-     console.log("Product:", res);
+     // console.log("Product:", res);
 
      return (
           <div className='product-list grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>

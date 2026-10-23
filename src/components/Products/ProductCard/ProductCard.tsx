@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductProps) => {
 
      return (
           // ১. Link এ group ক্লাস যোগ করা হয়েছে
-          <Link href={`/categories`} className="group block">
+          <Link href={`/product/${product?.id}`} className="group block">
                <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-200">
                     {/* টপ সেকশন: ছবি এবং নাম */}
                     <div className="flex items-center gap-4">

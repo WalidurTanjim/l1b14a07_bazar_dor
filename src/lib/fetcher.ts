@@ -30,3 +30,8 @@ export const getCategories = async(): Promise<Category[]> => {
 export const getProducts = async(): Promise<Product[]> => {
      return fetchApi(`${URL}/api/bazardor/products`);
 }
+
+// getProductById
+export const getProductById = async(id: number): Promise<Product> => {
+     return fetchApi(`${URL}/api/bazardor/products/${id}`)
+}
