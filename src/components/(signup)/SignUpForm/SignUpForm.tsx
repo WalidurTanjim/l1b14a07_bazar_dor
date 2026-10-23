@@ -163,13 +163,6 @@ const SignUpForm = () => {
                </div>
 
                {/* submit button */}
-               {/* <button
-                    type="submit"
-                    className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
-               >
-                    অ্যাকাউন্ট তৈরি করুন
-               </button> */}
-
                <button
                     type="submit"
                     disabled={signUpLoading}

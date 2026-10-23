@@ -60,17 +60,17 @@ const ProfileDropdown = () => {
                               className="flex items-center gap-2.5 p-1 rounded-xl hover:bg-gray-100/80 transition-colors focus:outline-none"
                          >
                               {/* ইউজার ইমেজ অথবা নামের প্রথম অক্ষর */}
-                              {user.image ? (
+                              {user?.image ? (
                                    <Image
-                                        src={user.image}
-                                        alt={user.name || "User Avatar"}
+                                        src={user?.image}
+                                        alt={user?.name || "User Avatar"}
                                         width={40}
                                         height={40}
                                         className="w-10 h-10 rounded-2xl object-cover"
                                    />
                               ) : (
                                    <div className="w-7 h-7 rounded-2xl bg-gray-200 text-gray-800 font-semibold flex items-center justify-center text-base">
-                                        {getInitial(user.name)}
+                                        {getInitial(user?.name)}
                                    </div>
                               )}
 
@@ -89,10 +89,10 @@ const ProfileDropdown = () => {
                                    {/* ইউজার ইনফরমেশন */}
                                    <div className="mb-5">
                                         <h3 className="text-lg font-medium text-gray-900 tracking-tight leading-snug">
-                                             {user.name}
+                                             {user?.name}
                                         </h3>
                                         <p className="text-sm text-gray-500 font-normal truncate mt-0.5">
-                                             {user.email}
+                                             {user?.email}
                                         </p>
                                    </div>
 
