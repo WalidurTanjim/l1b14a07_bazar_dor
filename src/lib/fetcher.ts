@@ -1,4 +1,5 @@
 import { Category } from "@/types/category";
+import { Product } from "@/types/product";
 
 // API base url
 const URL = process.env.NEXT_PUBLIC_API_URL;
@@ -23,4 +24,9 @@ const fetchApi = async<T>(url: string): Promise<T> => {
 // getCategories
 export const getCategories = async(): Promise<Category[]> => {
      return fetchApi<Category[]>(`${URL}/api/bazardor/categories`);
+}
+
+// getProducts
+export const getProducts = async(): Promise<Product[]> => {
+     return fetchApi(`${URL}/api/bazardor/products`);
 }

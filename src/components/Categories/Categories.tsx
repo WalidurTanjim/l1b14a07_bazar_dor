@@ -19,8 +19,6 @@ const Categories = () => {
           fetchCategory();
      }, []);
 
-     console.log('Categories:', categories);
-
      return (
           <div className="flex items-center space-x-2">
                {
