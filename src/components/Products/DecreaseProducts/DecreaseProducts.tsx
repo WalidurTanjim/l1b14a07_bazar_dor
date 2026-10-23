@@ -8,7 +8,7 @@ const DecreaseProducts = () => {
                <div>
                     <div className="py-5">
                          <h1 className="text-xl font-semibold text-slate-800">
-                              <span className='text-red-600 me-2'>▼</span>
+                              <span className='text-emerald-600 me-2'>▼</span>
                               আজ দাম কমেছে
                          </h1>
                     </div>

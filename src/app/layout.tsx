@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import NavLinks from "@/components/NavLinks/NavLinks";
 import { Suspense } from "react";
 import NavLinksSkeleton from "@/components/Skeketons/NavLinksSkeleton/NavLinksSkeleton";
+import HMarquee from "@/components/HMarquee/HMarquee";
 
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </Suspense>
           </div>
         </div>
+        <HMarquee />
 
         <main>{children}</main>
 
