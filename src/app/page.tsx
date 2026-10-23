@@ -1,7 +1,9 @@
+import Banner from "@/components/Banner/Banner";
+
 export default function Home() {
   return (
-    <div>
-      <h1>বাজার দর</h1>
-    </div>
+    <section className="bazar-dor">
+      <Banner />
+    </section>
   );
 } 

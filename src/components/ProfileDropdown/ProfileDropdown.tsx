@@ -94,7 +94,7 @@ const ProfileDropdown = () => {
                               {/* নামের প্রথম অংশ ও ডাউন অ্যারো */}
                               <span className="text-gray-900 font-medium text-base flex items-center gap-1.5">
                                    {user.name?.split(" ")[0]}
-                                   <span className="text-[10px] text-gray-500 transform translate-y-[1px]">
+                                   <span className="text-[10px] text-gray-500 transform translate-y-px">
                                         ▼
                                    </span>
                               </span>
