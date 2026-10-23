@@ -1,14 +1,42 @@
 "use client"
 
+import { authClient } from '@/lib/auth-client';
+import { Loader2 } from 'lucide-react';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const UpdateProfile = () => {
-     const [name, setName] = useState("");
+     const [name, setName] = useState<string>("");
+     const [loading, setLoading] = useState<boolean>(false);
 
-     const handleUpdate = (e: React.FormEvent) => {
+     const handleUpdate = async(e: React.SubmitEvent<HTMLElement>) => {
           e.preventDefault();
           // আপনার আপডেটের লজিক এখানে যুক্ত করতে পারেন
-          console.log("Updated Name:", name);
+          // console.log("Updated name:", name);
+
+          try{
+               setLoading(true);
+
+               const { data: resData, error } = await authClient.updateUser({
+                    name: name
+               });
+
+               // console.log("Updated successfully:", resData, error);
+
+               if(resData?.status) {
+                    setName('')
+                    toast.success("Name updated successfully")
+               }else {
+                    console.error("Update profile error:", error);
+                    toast.error(error?.message as string)
+                    return
+               }
+          }catch(err) {
+               console.error("Update profile error", err);
+               toast.error("An unexpected error occurred.")
+          }finally {
+               setLoading(false);
+          }
      };
 
      return (
@@ -34,12 +62,20 @@ const UpdateProfile = () => {
                     </div>
 
                     {/* আপডেট বাটন */}
-                    <button 
-                         type="submit"
-                         className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-sm transition-colors text-center"
-                    >
-                         আপডেট
-                    </button>
+                    <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full mt-2 py-2.5 bg-[#008744] hover:bg-[#00753b] disabled:bg-opacity-80 text-white text-sm font-medium rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+               >
+                    {loading ? (
+                         <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <span>আপডেট হচ্ছে...</span>
+                         </>
+                    ) : (
+                         "আপডেট"
+                    )}
+               </button>
                </form>
           </div>
      )
