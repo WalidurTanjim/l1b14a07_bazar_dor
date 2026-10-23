@@ -22,7 +22,7 @@ const MarqueeList = async() => {
                                    <h1>{product?.nameBn}</h1>
                                    <p>{product?.today} টাকা/{product?.unit === "kg" ? "কেজি" : product?.unit === "litre" ? "লিটার" : product?.unit === "dozon" ? "ডজন" : "পিস"}</p>
                                    <p>{product?.change?.dir === "up" ? <span className='text-red-600'>▲</span> : <span className='text-emerald-600'>▼</span>}</p>
-                                   <p>{product?.change?.pct}</p>
+                                   <p className={`${product?.change?.dir === "up" ? 'text-red-600' : 'text-emerald-600'}`}>{product?.change?.pct}%</p>
                               </div>
                          )
                     })
