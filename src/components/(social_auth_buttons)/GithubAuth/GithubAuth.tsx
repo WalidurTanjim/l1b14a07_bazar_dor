@@ -1,7 +1,7 @@
 "use client"
 import { authClient } from '@/lib/auth-client'
 import { Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -9,19 +9,22 @@ const GithubAuth = () => {
      const [loading, setLoading] = useState<boolean>(false)
 
      const router = useRouter();
+     const searchParams = useSearchParams();
+     const callbackUrl = searchParams.get("callbackUrl") || "/";
+     // console.log("Github callback url:", callbackUrl)
 
      const githubSignIn = async() => {
           try{
                setLoading(true);
 
                const { data: resData, error } = await authClient.signIn.social({
-                    provider: 'github'
+                    provider: 'github',
+                    callbackURL: callbackUrl 
                })
-               console.log("Gitauth res:", resData, error);
+               // console.log("Gitauth res:", resData, error);
 
                if(resData?.redirect) {
                     toast.success("Account signin successfully")
-                    router.push('/')
                }else{
                     toast.error("An unexpected error occured")
                }

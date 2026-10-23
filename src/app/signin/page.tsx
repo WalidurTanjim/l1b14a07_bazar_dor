@@ -1,3 +1,5 @@
+export const instant = false
+
 import SignInForm from "@/components/(signin)/SignInForm/SignInForm";
 import GithubAuth from "@/components/(social_auth_buttons)/GithubAuth/GithubAuth";
 import GoogleAuth from "@/components/(social_auth_buttons)/GoogleAuth/GoogleAuth";

@@ -8,10 +8,12 @@ export async function proxy(request: NextRequest) {
      const session = await auth.api.getSession({
           headers: await headers()
      })
-     console.log("Session form proxy:", session);
+     // console.log("Session form proxy:", session);
+     const callbackUrl = encodeURIComponent(request?.nextUrl?.pathname);
+     // console.log(callbackUrl);
 
      if(!session) {
-          return NextResponse.redirect(new URL('/signin', request.url))
+          return NextResponse.redirect(new URL(`/signin?callbackUrl=${callbackUrl}`, request.url))
      }
 
      return NextResponse.next();

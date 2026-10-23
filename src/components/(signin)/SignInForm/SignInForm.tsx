@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { MoveLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 
 const SignInForm = () => {
@@ -14,8 +14,9 @@ const SignInForm = () => {
      const [signInLoading, setSignInLoading] = useState<boolean>(false);
 
      const router = useRouter();
-     const pathname = usePathname();
-     console.log("Signin pathname:", pathname);
+     const searchParams = useSearchParams();
+     const callbackUrl = searchParams.get('callbackUrl') || "/";
+     console.log("Signin pathname:", callbackUrl);
 
      const validatePassword = (value: string) => {
           const hasUppercase = /[A-Z]/.test(value);
@@ -74,6 +75,7 @@ const SignInForm = () => {
 
                if (resData?.user) {
                     toast.success("Account signin successfully");
+                    router.push(callbackUrl);
                } else {
                     console.error("Signin error:", resError);
                     toast.error(resError?.message as string);
