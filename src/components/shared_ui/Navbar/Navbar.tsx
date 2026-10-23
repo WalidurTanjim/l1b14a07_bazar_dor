@@ -1,15 +1,17 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import ProfileDropdown from "@/components/ProfileDropdown/ProfileDropdown";
-import Categories from "@/components/Categories/Categories";
-import NavLinks from "@/components/NavLinks/NavLinks";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
      const [currentDate, setCurrentDate] = useState("");
+
+     const { data: sessionData } = authClient.useSession();
+     console.log("Session from navbar:", sessionData);
 
      useEffect(() => {
           const date = new Date().toLocaleDateString("bn-BD", {
