@@ -6,6 +6,7 @@ import Footer from "@/components/shared_ui/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
 import NavLinks from "@/components/NavLinks/NavLinks";
 import { Suspense } from "react";
+import NavLinksSkeleton from "@/components/Skeketons/NavLinksSkeleton/NavLinksSkeleton";
 
 
 const geistSans = Geist({
@@ -31,11 +32,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${noto_sans_bengali.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <div className="px-4 md:px-6 lg:px-8 w-full max-w-7xl mx-auto">
-          <Suspense fallback={<p>Categories loading...</p>}>
-            <NavLinks />
-          </Suspense>
+        <div className="nav pb-2">
+          <Navbar />
+
+          <div className="px-4 md:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+            <Suspense fallback={<NavLinksSkeleton />}>
+              <NavLinks />
+            </Suspense>
+          </div>
         </div>
 
         <main>{children}</main>

@@ -19,8 +19,8 @@ const Navbar = () => {
      }, []);
 
      return (
-          <header className="w-full bg-white sticky top-0 z-50 py-4">
-               <div className="mb-3">
+          <header className="w-full bg-white sticky top-0 z-50 pb-2">
+               <div>
                     <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
                          <div className="flex items-center justify-between h-20">
 
@@ -60,8 +60,6 @@ const Navbar = () => {
                          </div>
                     )}
                </div>
-
-               {/* <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8"></div> */}
           </header>
      );
 };

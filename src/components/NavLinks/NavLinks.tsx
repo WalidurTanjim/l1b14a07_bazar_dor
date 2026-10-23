@@ -7,7 +7,7 @@ const NavLinks = async() => {
      // console.log(res);
 
      return (
-          <div className='flex items-center space-x-2'>
+          <div className='grid gap-2 grid-cols-2 md:grid-cols-6 lg:grid-cols-8'>
                {
                     res?.map((category: Category) => {
                          return (
