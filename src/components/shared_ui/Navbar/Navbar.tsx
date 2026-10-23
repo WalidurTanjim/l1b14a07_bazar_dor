@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import ProfileDropdown from "@/components/ProfileDropdown/ProfileDropdown";
 import Categories from "@/components/Categories/Categories";
+import NavLinks from "@/components/NavLinks/NavLinks";
 
 const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
@@ -60,11 +61,7 @@ const Navbar = () => {
                     )}
                </div>
 
-               <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                    <Suspense fallback={<p>Categories is loading...</p>}>
-                         <Categories />
-                    </Suspense>
-               </div>
+               {/* <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8"></div> */}
           </header>
      );
 };

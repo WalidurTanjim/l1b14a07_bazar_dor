@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/shared_ui/Navbar/Navbar";
 import Footer from "@/components/shared_ui/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
+import NavLinks from "@/components/NavLinks/NavLinks";
+import { Suspense } from "react";
 
 
 const geistSans = Geist({
@@ -27,9 +29,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html data-theme="light" lang="en" className={`${noto_sans_bengali.className} h-full antialiased`}>
+    <html lang="en" className={`${noto_sans_bengali.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Navbar />
+        <div className="px-4 md:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+          <Suspense fallback={<p>Categories loading...</p>}>
+            <NavLinks />
+          </Suspense>
+        </div>
 
         <main>{children}</main>
 

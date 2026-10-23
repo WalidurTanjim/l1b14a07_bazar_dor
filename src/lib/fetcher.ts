@@ -26,6 +26,11 @@ export const getCategories = async(): Promise<Category[]> => {
      return fetchApi<Category[]>(`${URL}/api/bazardor/categories`);
 }
 
+// getProductsByCategory
+export const getProductsByCategory = async(category: string): Promise<Product[]> => {
+     return fetchApi(`${URL}/api/bazardor/products?category=${category}`);
+}
+
 // getProducts
 export const getProducts = async(): Promise<Product[]> => {
      return fetchApi(`${URL}/api/bazardor/products`);
