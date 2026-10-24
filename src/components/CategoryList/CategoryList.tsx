@@ -3,6 +3,7 @@ import { Category } from '@/types/category'
 import { Product } from '@/types/product'
 import ProductCard from '../Products/ProductCard/ProductCard'
 import SortProductsPage from '../SortProducts/SortProducts'
+import Link from 'next/link'
 
 interface SlugParams {
      params: Promise<{
@@ -26,6 +27,7 @@ const CategoryList = async ({ params }: SlugParams) => {
      const { slug } = await params;
      const categories = await fetchAllCategories();
      const categoryProducts = await fetchCategoryProducts(slug);
+     const invalidSlug = categories.find((category: Category) => category?.slug === slug);
 
      const existsCategory = categories.find((category: Category) => category?.slug === slug);
      const totalProducts = categoryProducts.length;
@@ -66,12 +68,27 @@ const CategoryList = async ({ params }: SlugParams) => {
                <div className='py-8'>
                     <h1 className='text-slate-600'>মোট {totalProducts} টি পণ্য দেখানো হচ্ছে</h1>
 
-                    <div className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5'>
-                         {/* <Suspense fallback={<p>Products is loading...</p>}> */}
+                    <div>
                          {
-                              categoryProducts?.map((product: Product) => <ProductCard key={product?.id} product={product} />)
+                              invalidSlug === undefined ?
+                                   <div className="w-full min-h-[50vh] flex flex-col items-center justify-center text-center px-4 py-12 mx-auto">
+                                        <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-xl font-bold mb-4 border border-emerald-100 shadow-sm">🔍</div>
+
+                                        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
+                                             এই ক্যাটাগরিতে কোনো পণ্য পাওয়া যায়নি!
+                                        </h2>
+                                        <p className="text-sm text-gray-500 max-w-md mb-6">
+                                             আপনি যে ক্যাটাগরি বা লিংকটি খুঁজছেন তা খালি রয়েছে অথবা সঠিক নয়। বাজারের অন্যান্য পণ্যের সঠিক দাম দেখতে হোমপেজে ফিরে যান।
+                                        </p>
+
+                                        <Link href="/" className="inline-flex items-center justify-center bg-[#008744] hover:bg-[#00753b] text-white text-sm font-medium px-6 py-2.5 rounded-xl transition-colors shadow-sm">হোম পেজে ফিরে যান</Link>
+                                   </div> :
+                                   <div className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5'>
+                                        {
+                                             categoryProducts?.map((product: Product) => <ProductCard key={product?.id} product={product} />)
+                                        }
+                                   </div>
                          }
-                         {/* </Suspense> */}
                     </div>
                </div>
           </div>
