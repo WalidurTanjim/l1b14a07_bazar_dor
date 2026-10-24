@@ -8,7 +8,9 @@ console.log(URL)
 // fetchApi
 const fetchApi = async<T>(url: string): Promise<T> => {
      try{
-          const res = await fetch(url);
+          const res = await fetch(url, {
+            cache: 'no-store', // ক্যাশ বন্ধ রাখা যাতে প্রতিবার ফ্রেশ ডাটা আনে
+        });
 
           if(!res.ok) {
                throw new Error("Failed to fetch data");

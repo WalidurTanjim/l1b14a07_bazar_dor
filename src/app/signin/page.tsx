@@ -5,6 +5,7 @@ import GithubAuth from "@/components/(social_auth_buttons)/GithubAuth/GithubAuth
 import GoogleAuth from "@/components/(social_auth_buttons)/GoogleAuth/GoogleAuth";
 import { MoveLeft } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const SignIn = () => {
      return (
@@ -94,7 +95,9 @@ const SignIn = () => {
                          <GoogleAuth />
 
                          {/* GitHub Button */}
-                         <GithubAuth />
+                         <Suspense fallback={<p>Loading...</p>}>
+                              <GithubAuth />
+                         </Suspense>
                     </div>
 
                     {/* সাইন আপ লিঙ্ক */}

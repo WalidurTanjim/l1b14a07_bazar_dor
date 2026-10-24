@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 export default function SortProductsPage() {
      const [sortOptions, setSortOptions] = useState<'default' | 'low-to-high' | 'high-to-low'>('default');
-     console.log(sortOptions)
+     // console.log(sortOptions)
 
      return (
           <div className="w-full">
