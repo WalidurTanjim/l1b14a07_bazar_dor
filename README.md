@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর (Bazar Dor) — Daily Market Price Tracker
 
-## Getting Started
+**বাজার দর** হলো একটি আধুনিক ই-কমার্স অ্যাপেক্স অ্যাপ্লিকেশন যেখানে প্রতিদিনের নিত্যপ্রয়োজনীয় পণ্যের বাজারদর এক নজরে দেখা যায়। এখানে ব্যবহারকারীরা বিভিন্ন বাজারের পণ্যের দাম তুলনা করতে পারবেন, দাম বাড়লো নাকি কমলো তা ট্র্যাক করতে পারবেন এবং বিস্তারিত তথ্য দেখতে পারবেন।
 
-First, run the development server:
+🌐 **লাইভ ওয়েবসাইট URL**: [https://l1b14a07-bazar-dor.vercel.app](https://l1b14a07-bazar-dor.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ ব্যবহৃত প্রযুক্তি (Tech Stack)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** [Next.js](https://nextjs.org/) (App Router, TypeScript)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Icons:** [Lucide React](https://lucide.dev/)
+* **Authentication:** [Better Auth](https://www.better-auth.com/) (Email/Password + Google & GitHub OAuth)
+* **Notifications:** [React Hot Toast](https://react-hot-toast.com/)
+* **Deployment:** [Vercel](https://vercel.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ প্রধান বৈশিষ্ট্যসমূহ (Key Features)
 
-To learn more about Next.js, take a look at the following resources:
+### 1. 🔝 নেভবার ও প্রাইস স্ট্রিপ (Navbar & Price Ticker)
+* 🛒 **লোগো ও বাংলা তারিখ:** লোগোর নিচে বর্তমান বাংলা তারিখ স্বয়ংক্রিয়ভাবে প্রদর্শিত হয়।
+* 🧭 **অ্যাক্টিভ ক্যাটাগরি হাইলাইট:** `usePathname()` ব্যবহার করে বর্তমানে নির্বাচিত ক্যাটাগরি হাইলাইট করার ব্যবস্থা।
+* 🔐 **অথেন্টিকেশন বাটন/প্রোফাইল:** সাইন ইন ও সাইন আপ বাটন; লগইন থাকা অবস্থায় প্রোফাইল তথ্য এবং সাইন আউট অপশন।
+* 📈 **লাইভ প্রাইস ট্র্যাকার (Marquee):** নেভবারের নিচে অনন্ত স্ক্রোলিং স্ট্রিপ যেখানে ইমোজি, নাম, আজকের দাম এবং শতাংশের পরিবর্তন (▲/▼ %) লাইভ স্ক্রোল করে।
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. 🅱️ হিরো সেকশন (Hero / Banner)
+* আইক্যাচি টাইটেল, সাবটাইটেল এবং ডানপাশে আকর্ষক ব্যানার ইমেজ।
+* **স্মুথ স্ক্রোল CTA বাটন:** পেজ রিফ্রেশ বা রাউট চেঞ্জ না করে সরাসরি একই পেজের `#সব-পণ্য` সেকশনে স্ক্রোল করে নিয়ে যায়।
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. ⚖️ হোমপেজ ও প্রোডাক্ট সেকশন (Product Sections)
+* 📈 **আজ দাম বেড়েছে ▲:** শীর্ষ ৬টি সর্বোচ্চ দাম বাড়া পণ্যের তালিকা।
+* 📉 **আজ দাম কমেছে ▼:** শীর্ষ ৬টি সর্বোচ্চ দাম কমা পণ্যের তালিকা।
+* 🛍️ **সব পণ্য (Responsive Grid):**
+  * ইমোজি থাম্বনেইল, পণ্যের নাম, পরিমাপের একক (প্রতি কেজি, প্রতি লিটার ইত্যাদি)।
+  * বাংলা সংখ্যায় আজকের দাম এবং কালার-কোডেড চেঞ্জ ব্যাজ (সবুজ: বৃদ্ধি, লাল: হ্রাস, ধূসর: অপরিবর্তিত)।
+  * কার্ডে ক্লিক করলে প্রোটেক্টেড প্রোডাক্ট ডিটেইলস পেজে নিয়ে যায়।
 
-## Deploy on Vercel
+### 4. 🔒 প্রোডাক্ট ডিটেইলস পেজ (`/product/[slug]`)
+* **প্রাইভেট রাউট:** শুধুমাত্র অথেন্টিকেটেড ব্যবহারকারীরা দেখতে পারবেন (লগইন না থাকলে `callbackUrl` সহ সাইন-ইন পেজে নিয়ে যায়)।
+* **পণ্যের সামারি:** সর্বনিম্ন দাম, সর্বোচ্চ দাম এবং গড় দামের এক নজরে হিসাব।
+* **বাজারভিত্তিক আজকের দাম:** বিভিন্ন বাজারের পৃথক পৃথক দামের তুলনামূলক তালিকা।
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. 📂 ক্যাটাগরি পেজ (`/category/[id]`)
+* **সাজান (Sorting Control):** ডিফল্ট, দাম: কম থেকে বেশি, এবং দাম: বেশি থেকে কম ফিল্টারিং।
+* **স্কেলেটন লোডিং (Skeleton Loader):** ডেটা ফেচ হওয়ার সময় মসৃণ লোডিং অ্যানিমেশন।
+* **খালি/ভুল ক্যাটাগরি স্টেট (404 Empty State):** ভুল বা খালি ক্যাটাগরির জন্য ৪০৪ স্টাইলের বন্ধুত্বপূর্ণ বার্তা ও “হোম পেজে ফিরে যান” বাটন।
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 6. 🔑 অথেন্টিকেশন সিস্টেম (`/signin`, `/signup`)
+* **ইমেইল/পাসওয়ার্ড লগইন ও সাইন আপ:** পাসওয়ার্ড ভ্যালিডেশন এবং সুন্দর ফর্ম ইন্টারফেস।
+* **সোশ্যাল লগইন (Google & GitHub):** প্রডাকশনে রিডাইরেক্ট সমস্যামুক্ত একক ক্লিকে লগইন।
+* **স্মার্ট রিডাইরেক্ট (`callbackUrl`):** প্রাইভেট রাউট থেকে লগইন/সাইন-আপ করলে সফল অথেন্টিকেশনের পর সরাসরি পূর্বের কাঙ্ক্ষিত পেজে ফেরত নিয়ে যাওয়া।
+* **টোস্ট নোটিফিকেশন:** সাইন ইন, সাইন আপ, সাইন আউট ও এরর মেসেজের জন্য তাৎক্ষণিক রিয়েল-টাইম টোস্ট।
+
+### 7. 🎨 ৪০৪ এবং লোডিং স্টেট (Custom 404 & Loading)
+* যেকোনো ভুল রাউটের জন্য কাস্টম ৪০৪ পেজ (`src/app/not-found.tsx`)।
+* ভিজিটরের জন্য দ্রুত ও নির্বিঘ্ন লোডিং অভিজ্ঞতা নিশ্চিত করতে সাসপেন্স ও স্কেলেটন লোডার।
+
+### 8. 📱 শতভাগ রেসপন্সিভ ডিজাইন
+* মোবাইল, ট্যাবলেট এবং ডেস্কটপ ডিভাইসে পিক্সেল-পারফেক্ট লেআউট এবং ক্যাটাগরি গ্রিড অ্যাডজাস্টমেন্ট।
+
+---
+
+## 📁 প্রজেক্ট স্ট্রাকচার (Folder Structure)
+
+```text
+src/
+ ├── app/
+ │    ├── (auth)/
+ │    │    ├── signin/page.tsx
+ │    │    └── signup/page.tsx
+ │    ├── category/[id]/page.tsx
+ │    ├── product/[slug]/page.tsx
+ │    ├── not-found.tsx
+ │    ├── layout.tsx
+ │    └── page.tsx
+ ├── components/
+ │    ├── Banner/
+ │    ├── Navbar/
+ │    ├── Products/
+ │    ├── (signin)/
+ │    ├── (signup)/
+ │    └── (social_auth_buttons)/
+ ├── lib/
+ │    ├── auth.ts
+ │    ├── auth-client.ts
+ │    └── fetcher.ts
+ └── proxy.ts (Middleware for route protection)
