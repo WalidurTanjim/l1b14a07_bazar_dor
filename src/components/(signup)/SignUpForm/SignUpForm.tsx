@@ -56,7 +56,7 @@ const SignUpForm = () => {
                password: string;
                repeat_password: string;
           };
-          console.log("Signup before auth:", formValues);
+          // console.log("Signup before auth:", formValues);
 
           try {
                setSignUpLoading(true);
@@ -66,7 +66,7 @@ const SignUpForm = () => {
                     email: formValues?.email,
                     password: formValues?.password
                })
-               console.log("Signup auth:", resData, error);
+               // console.log("Signup auth:", resData, error);
 
                if (resData?.user) {
                     toast.success("Account signup successfully");
